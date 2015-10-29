@@ -1,4 +1,4 @@
-FROM ryanhatfield/doxygen-server:1.0.0
+FROM ryanhatfield/doxygen-server:latest
 
 MAINTAINER Ryan Hatfield <ryan@ryan.bio>
 
