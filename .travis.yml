@@ -1,0 +1,11 @@
+# sudo is required to use docker
+sudo: required
+services:
+- docker
+script:
+# Build the base image, build the -onbuild image  
+- docker build --tag ryanhatfield/doxygen-server:latest .
+- docker build --tag ryanhatfield/doxygen-server:latest-onbuild onbuild/.
+# Run the two images, echo the version information then a generic 'ls' (should probably figure out something else)
+- docker run --rm -it ryanhatfield/doxygen-server:latest /bin/bash -c "echo 'Doxygen version: $(doxygen --version)'"
+- docker run --rm -it ryanhatfield/doxygen-server:latest-onbuild /bin/bash -c "echo 'Folder contents?: $(ls -la)'"
