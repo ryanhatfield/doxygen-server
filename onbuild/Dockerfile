@@ -11,9 +11,9 @@ ONBUILD COPY . /usr/src/app/source
 
 # First, check that the Dockerfile exists,
 # then override the OUTPUT_DIRECTORY and HTML_OUTPUT config options
-ONBUILD RUN if [[ ! -f Doxyfile ]]; then echo "Doxyfile not found."; exit 1; fi && \
-        echo "OUTPUT_DIRECTORY = ../build" >> Doxyfile && \
-        echo "HTML_OUTPUT = html" >> Doxyfile
+ONBUILD RUN /bin/bash -c "if [[ ! -f Doxyfile ]]; then echo Doxyfile not found.; exit 1; fi && \
+        echo OUTPUT_DIRECTORY = ../build >> Doxyfile && \
+        echo HTML_OUTPUT = html >> Doxyfile"
 
 # Run the doxygen command
 ONBUILD RUN doxygen
